@@ -3,26 +3,29 @@ package dsa.variable_sized_sliding_window;
 public class consecutiveOnes {
     public static void main(String[] args) {
         // int[] arr = { 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 };
-        // int[] arr = { 1, 1, 0, 0, 0, 1, 1, 0, 1, 0 };
-        int[] arr = { 0, 0, 0 };
+        // int[] arr = { 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0 };
+        int[] arr = { 0, 1, 1 };
+        // int[] arr = { 0, 0, 0 };
 
         System.out.println(cntOnes(arr));
     }
 
     static int cntOnes(int[] arr) {
-        int start = 0, end = 0, cnt = 0, max = Integer.MIN_VALUE;
-
+        int start = 0, end = 0, cnt = 0, max = 0;
+        // pure var-s win technique cannot be applied ofr this, we use start var as
+        // marker,here
         while (end < arr.length) {
-            if (arr[end] == 1) {
-                System.out.println("hjhj");
-                max = Math.max(cnt, max);
-                cnt++;
+
+            if (arr[end] == 0 || (arr[end] == 1 && arr[start] == 0)) {
+
+                cnt = 0;
+                start = end;
             }
 
-            if (arr[end] == 0) {
-                System.out.println("oiuyt");
-                cnt--;
-                start++;
+            if (arr[end] == 1) {
+
+                cnt++;
+                max = Math.max(cnt, max);
             }
 
             end++;
