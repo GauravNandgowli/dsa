@@ -9,25 +9,16 @@ public class proConundrum {
 
     static int prodC(int[] arr, int k) {
         int start = 0, end = 0, cnt = 0;
-        int product = arr[start];
-
+        int product = 1;
         while (end < arr.length) {
-
-            System.out.println(product);
-
-            if (product < k) {
-                cnt++;
-                end++;
-                product *= arr[end];
-            }
-            if (product >= k) {
+            product *= arr[end];
+            while (product >= k) {
+                product /= arr[start];
                 start++;
-                end = start;
-                product = arr[end];
             }
-
+            cnt += end - start + 1;
+            end++;
         }
-
         return cnt;
     }
 }
