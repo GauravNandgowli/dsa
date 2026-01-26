@@ -19,7 +19,7 @@ class Solution {
 
             newNode.next = node.next;
             node.next = newNode;
-
+System.out.println("Hello");
         }
 
     }
