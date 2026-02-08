@@ -1,4 +1,4 @@
-package dsa.variable_sized_sliding_window;
+// package dsa.variable_sized_sliding_window;
 
 public class proConundrum {
     public static void main(String[] args) {
