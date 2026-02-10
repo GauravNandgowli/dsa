@@ -37,13 +37,7 @@ public class clusterAnagram {
                 String currKey = new String(currChars);
                 if (element.equals(currKey)) {
                     localList.add(strs[localIdx]);
-                    int count = map.get(element) - 1;
-                    if (count == 0) {
-                        map.remove(element);
-                        break;
-                    } else {
-                        map.put(element, count);
-                    }
+                    map.compute(element, (k, v) -> v == 1 ? null : v - 1);
                 }
                 localIdx++;
             }
