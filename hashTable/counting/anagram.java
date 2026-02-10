@@ -7,10 +7,10 @@ public class anagram {
         System.out.println();
         String s1 = "abc";
         String s2 = "ade";
-        System.out.println(constructibilityCheck(s1, s2));
+        System.out.println(anagramCheck(s1, s2));
     }
 
-    public static boolean constructibilityCheck(String s1, String s2) {
+    public static boolean anagramCheck(String s1, String s2) {
         if (s1.length() != s2.length())
             return false;
 
