@@ -1,3 +1,4 @@
+package patternGeneration;
 
 import java.util.*;
 
