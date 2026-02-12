@@ -2,22 +2,22 @@ package expressions;
 
 import java.util.Stack;
 
-public class evalPostfix {
+public class evalPrefix {
 
     public static void main(String[] args) {
         System.out.println();
-        // String exp = "231*+9-";
-        String exp = "863/+2-";
+        String exp = "-+8/632";
         System.out.println(eval(exp));
     }
 
     public static float eval(String exp) {
 
         Stack<Float> stack = new Stack<>();
-        for (char ch : exp.toCharArray()) {
+        for (int i = exp.length() - 1; i >= 0; i--) {
+            char ch = exp.charAt(i);
             if (operand(ch)) {
-                float op2 = stack.pop();
                 float op1 = stack.pop();
+                float op2 = stack.pop();
                 stack.push(calc(op1, ch, op2));
             } else
                 stack.push((float) (ch - '0'));
