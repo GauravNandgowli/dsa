@@ -8,35 +8,29 @@ public class longestKDistinctSubarray {
         List<String> lst = Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h");
         // List<String> lst = Arrays.asList("a", "a", "a", "a", "a", "b", "c");
         // List<String> lst = Arrays.asList("a", "b", "c", "b", "e", "d");
-        System.out.println(subArray(lst, 3));
+        String s = "abcbed";
+        System.out.println(subArray(s, 2));
     }
 
-    public static List<String> subArray(List<String> s, int k) {
-        List<String> res = new ArrayList<>();
-        Map<String, Integer> map = new HashMap<>();
+    public static int subArray(String s, int k) {
+        char[] str = s.toCharArray();
+        Map<Character, Integer> map = new HashMap<>();
         int start = 0;
         int end = 0;
-        int maxLen = 0;
-        int maxStart = 0;
-
-        while (end < s.size()) {
-            map.merge(s.get(end), 1, Integer::sum);
+        int maxLen = Integer.MIN_VALUE;
+        while (end < str.length) {
+            map.merge(str[end], 1, Integer::sum);
             while (map.size() > k) {
-                map.compute(s.get(start), (K, V) -> {
+                map.compute(str[start], (K, V) -> {
                     return V == 1 ? null : V - 1;
                 });
                 start++;
             }
             int currentLen = end - start + 1;
-            if (currentLen > maxLen) {
-                maxLen = currentLen;
-                maxStart = start;
-            }
+            maxLen = Math.max(currentLen, maxLen);
             end++;
         }
-        for (int i = maxStart; i < maxStart + maxLen; i++) {
-            res.add(s.get(i));
-        }
-        return res;
+
+        return maxLen;
     }
 }
